@@ -181,6 +181,7 @@ const SavingsCalculator = () => {
                 }`}
               >
                 <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
+                  projectType === '' ? 'bg-teal-600' : 
                   projectType === 'gypcrete' ? 'bg-orange-500' : 'bg-gray-400'
                 }`}></div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">
@@ -200,6 +201,7 @@ const SavingsCalculator = () => {
                 }`}
               >
                 <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
+                  projectType === '' ? 'bg-teal-600' : 
                   projectType === 'subfloor' ? 'bg-orange-500' : 'bg-gray-400'
                 }`}></div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">Entire Subfloor System</h3>
