@@ -437,137 +437,138 @@ const SavingsCalculator = () => {
     );
   }
 
-  // Full Report View
-  return (
-    <div className="max-w-6xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-      <div className="bg-white rounded-2xl shadow-2xl p-8">
-        <div className="mb-6">
-          <button
-            onClick={() => setShowFullReport(false)}
-            className="flex items-center text-gray-600 hover:text-orange-600 transition-colors duration-200"
-          >
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to savings summary
-          </button>
-        </div>
-
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-            <CheckCircle className="w-8 h-8 text-green-600" />
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Complete Savings Analysis</h2>
-          <p className="text-gray-600">Detailed comparison and benefits analysis</p>
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-8 mb-8">
-          <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
-            <DollarSign className="w-10 h-10 mb-4" />
-            <div className="text-3xl font-bold mb-2">${results.savings.toLocaleString()}</div>
-            <h3 className="text-lg font-semibold">Total Savings</h3>
-            <p className="text-green-100 text-sm">{results.percentSavings}% cost reduction</p>
-          </div>
-
-          <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
-            <Clock className="w-10 h-10 mb-4" />
-            <div className="text-3xl font-bold mb-2">
-              {results.type === 'gypcrete' ? '7+' : 'Faster'}
-            </div>
-            <h3 className="text-lg font-semibold">
-              {results.type === 'gypcrete' ? 'Days Saved' : 'Installation'}
-            </h3>
-            <p className="text-blue-100 text-sm">
-              {results.type === 'gypcrete' ? 'No curing time required' : 'Streamlined process'}
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl p-6 text-white">
-            <Building className="w-10 h-10 mb-4" />
-            <div className="text-3xl font-bold mb-2">ICC-ESR</div>
-            <h3 className="text-lg font-semibold">Certified</h3>
-            <p className="text-purple-100 text-sm">Third-party validated performance</p>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 mb-8">
-          <div className="bg-gray-50 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Advantages</h3>
-            <div className="space-y-3">
-              {results.additionalBenefits.map((benefit, index) => (
-                <div key={index} className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">{benefit}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-gray-50 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Value</h3>
-            <div className="space-y-3">
-              <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Reduced project liability and risk</span>
-              </div>
-              <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Simplified scheduling and coordination</span>
-              </div>
-              <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Enhanced building performance</span>
-              </div>
-              <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Long-term durability advantages</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-xl p-6 text-white text-center">
-          <h3 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center mb-4">Ready to Start Saving?</h3>
-          <p className="mb-6 text-lg">
-            These savings are just the beginning. Let's discuss how MAXTERRA can optimize your specific project.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200">
-              Request Quote
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all duration-200">
-              Schedule Consultation
-            </button>
-          </div>
-          <div className="mt-4">
+  if (step === 3 && showFullReport) {
+    return (
+      <div className="max-w-6xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+        <div className="bg-white rounded-2xl shadow-2xl p-8">
+          <div className="mb-6">
             <button
-              onClick={() => {
-                setStep(1);
-                setProjectType('');
-                setBuildingType('');
-                setCompetitorType('');
-                setResults(null);
-                setEmail('');
-                setShowFullReport(false);
-              }}
-              className="text-white/80 hover:text-white underline transition-colors duration-200"
+              onClick={() => setShowFullReport(false)}
+              className="flex items-center text-gray-600 hover:text-orange-600 transition-colors duration-200"
             >
-              Start New Calculation
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Back to savings summary
             </button>
           </div>
-        </div>
 
-        <div className="mt-8 text-center text-sm text-gray-500">
-          <p>*Calculations based on documented cost analysis using maximum approved spacing for optimal performance comparison. 
-          {results?.type === 'subfloor' && competitorData[competitorType]?.constructionNote && 
-            ` ${competitorData[competitorType].constructionNote}.`
-          }
-          {results?.type === 'subfloor' && 
-            ' For different framing or construction approaches, contact us for customized analysis.'
-          }
-          Actual savings may vary by project and location.</p>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+              <CheckCircle className="w-8 h-8 text-green-600" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Complete Savings Analysis</h2>
+            <p className="text-gray-600">Detailed comparison and benefits analysis</p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8 mb-8">
+            <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
+              <DollarSign className="w-10 h-10 mb-4" />
+              <div className="text-3xl font-bold mb-2">${results.savings.toLocaleString()}</div>
+              <h3 className="text-lg font-semibold">Total Savings</h3>
+              <p className="text-green-100 text-sm">{results.percentSavings}% cost reduction</p>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
+              <Clock className="w-10 h-10 mb-4" />
+              <div className="text-3xl font-bold mb-2">
+                {results.type === 'gypcrete' ? '7+' : 'Faster'}
+              </div>
+              <h3 className="text-lg font-semibold">
+                {results.type === 'gypcrete' ? 'Days Saved' : 'Installation'}
+              </h3>
+              <p className="text-blue-100 text-sm">
+                {results.type === 'gypcrete' ? 'No curing time required' : 'Streamlined process'}
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl p-6 text-white">
+              <Building className="w-10 h-10 mb-4" />
+              <div className="text-3xl font-bold mb-2">ICC-ESR</div>
+              <h3 className="text-lg font-semibold">Certified</h3>
+              <p className="text-purple-100 text-sm">Third-party validated performance</p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+            <div className="bg-gray-50 rounded-xl p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Advantages</h3>
+              <div className="space-y-3">
+                {results.additionalBenefits.map((benefit, index) => (
+                  <div key={index} className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Value</h3>
+              <div className="space-y-3">
+                <div className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700">Reduced project liability and risk</span>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700">Simplified scheduling and coordination</span>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700">Enhanced building performance</span>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700">Long-term durability advantages</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-xl p-6 text-white text-center">
+            <h3 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center mb-4">Ready to Start Saving?</h3>
+            <p className="mb-6 text-lg">
+              These savings are just the beginning. Let's discuss how MAXTERRA can optimize your specific project.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200">
+                Request Quote
+              </button>
+              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all duration-200">
+                Schedule Consultation
+              </button>
+            </div>
+            <div className="mt-4">
+              <button
+                onClick={() => {
+                  setStep(1);
+                  setProjectType('');
+                  setBuildingType('');
+                  setCompetitorType('');
+                  setResults(null);
+                  setEmail('');
+                  setShowFullReport(false);
+                }}
+                className="text-white/80 hover:text-white underline transition-colors duration-200"
+              >
+                Start New Calculation
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center text-sm text-gray-500">
+            <p>*Calculations based on documented cost analysis using maximum approved spacing for optimal performance comparison. 
+            {results?.type === 'subfloor' && competitorData[competitorType]?.constructionNote && 
+              ` ${competitorData[competitorType].constructionNote}.`
+            }
+            {results?.type === 'subfloor' && 
+              ' For different framing or construction approaches, contact us for customized analysis.'
+            }
+            Actual savings may vary by project and location.</p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default SavingsCalculator;
