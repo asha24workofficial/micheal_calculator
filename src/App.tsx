@@ -248,7 +248,7 @@ const SavingsCalculator = () => {
                   <span className="text-white text-xs font-medium">$</span>
                 </div>
               </div>
-            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-4">Project Details</h2>
+            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
             <p className="text-gray-600">Tell us about your project for accurate savings calculations</p>
           </div>
 
