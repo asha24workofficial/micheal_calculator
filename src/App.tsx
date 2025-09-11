@@ -184,9 +184,9 @@ const SavingsCalculator = () => {
                   projectType === '' ? 'bg-teal-600' : 
                   projectType === 'gypcrete' ? 'bg-orange-500' : 'bg-gray-400'
                 }`}></div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                <h4 className="text-2xl font-semibold text-gray-900 mb-4">
                   Wet Gypsum Underlayment
-                </h3>
+                </h4>
                 <p className="text-gray-600 text-base mb-3 leading-relaxed">
                   Replace OSB + Wet Gypsum with MAXTERRA® MgO Fire- And Water-Resistant Underlayment
                 </p>
@@ -248,7 +248,7 @@ const SavingsCalculator = () => {
                   <span className="text-white text-xs font-medium">$</span>
                 </div>
               </div>
-            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-4">Project Details</h2>
+            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
             <p className="text-gray-600">Tell us about your project for accurate savings calculations</p>
           </div>
 
@@ -363,7 +363,7 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Cost Breakdown</h3>
+            <h3 className="font-manrope font-semibold text-xl text-gray-900 mb-6">Cost Breakdown</h3>
             <div className="flex justify-between items-start">
               <div className="flex-1">
                 <h4 className="text-sm font-medium text-gray-600 mb-2">
