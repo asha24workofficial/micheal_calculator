@@ -362,28 +362,28 @@ const SavingsCalculator = () => {
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded-xl p-6 mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Cost Breakdown</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-3">
+          <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-6">Cost Breakdown</h3>
+            <div className="flex justify-between items-start">
+              <div className="flex-1">
+                <h4 className="text-sm font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-3xl font-bold text-gray-900 mb-1">
                   ${results.currentCost.toLocaleString()}
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-500">
                   ${results.currentCostPerSF.toFixed(2)}/sq ft
                 </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-gray-700 mb-3">
+              <div className="flex-1 text-right">
+                <h4 className="text-sm font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'MAXTERRA System (OSB + Underlayment)' : 'MAXTERRA Subfloor'}
                 </h4>
-                <div className="text-2xl font-bold text-green-600">
+                <div className="text-3xl font-bold text-green-600 mb-1">
                   ${results.maxterraCost.toLocaleString()}
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-500">
                   ${results.maxterraCostPerSF.toFixed(2)}/sq ft
                 </div>
               </div>
