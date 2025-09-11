@@ -249,6 +249,7 @@ const SavingsCalculator = () => {
                 </div>
               </div>
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
+            </h2>
             <p className="text-gray-600">Tell us about your project for accurate savings calculations</p>
           </div>
 
@@ -431,13 +432,7 @@ const SavingsCalculator = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
 
-  // Full Report View
-  return (
     <div className="max-w-6xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
       <div className="bg-white rounded-2xl shadow-2xl p-8">
         <div className="mb-6">
