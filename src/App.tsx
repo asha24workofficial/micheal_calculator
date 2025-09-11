@@ -170,37 +170,37 @@ const SavingsCalculator = () => {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <button
                 onClick={() => handleProjectTypeSelect('gypcrete')}
-                className={`p-8 border-3 rounded-2xl transition-all duration-200 text-left hover:shadow-lg ${
+                className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
                   projectType === 'gypcrete' 
-                    ? 'border-orange-500 bg-orange-50 shadow-lg' 
-                    : 'border-gray-200 hover:border-orange-300 hover:bg-orange-25'
+                    ? 'border-orange-500 bg-white shadow-lg' 
+                    : 'border-gray-200 hover:border-gray-300 bg-white'
                 }`}
               >
+                <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
+                  projectType === 'gypcrete' ? 'bg-orange-500' : 'bg-gray-400'
+                }`}></div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                  <span className="text-orange-600 font-semibold">Wet Gypsum</span> Underlayment
+                  Wet Gypsum Underlayment
                 </h3>
                 <p className="text-gray-600 text-base mb-3 leading-relaxed">
-                  Replace OSB + <span className="text-orange-600 font-semibold">Wet Gypsum</span> with MAXTERRA®
-                </p>
-                <p className="text-orange-600 text-sm font-medium">
-                  MgO Fire- And Water-Resistant Underlayment
+                  Replace OSB + Wet Gypsum with MAXTERRA® MgO Fire- And Water-Resistant Underlayment
                 </p>
               </button>
 
               <button
                 onClick={() => handleProjectTypeSelect('subfloor')}
-                className={`p-8 border-3 rounded-2xl transition-all duration-200 text-left hover:shadow-lg ${
+                className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
                   projectType === 'subfloor' 
-                    ? 'border-orange-500 bg-orange-50 shadow-lg' 
-                    : 'border-gray-200 hover:border-orange-300 hover:bg-orange-25'
+                    ? 'border-orange-500 bg-white shadow-lg' 
+                    : 'border-gray-200 hover:border-gray-300 bg-white'
                 }`}
               >
+                <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
+                  projectType === 'subfloor' ? 'bg-orange-500' : 'bg-gray-400'
+                }`}></div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">Entire Subfloor System</h3>
                 <p className="text-gray-600 text-base mb-3 leading-relaxed">
-                  Replace subfloor with MAXTERRA®
-                </p>
-                <p className="text-orange-600 text-sm font-medium">
-                  MgO Non-Combustible Single Layer Structural Floor Panels
+                  Replace subfloor with MAXTERRA® MgO Non-Combustible Single Layer Structural Floor Panels
                 </p>
               </button>
             </div>
