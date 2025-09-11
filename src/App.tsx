@@ -157,11 +157,7 @@ const SavingsCalculator = () => {
   if (step === 1) {
     return (
       <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          
-
-          <div className="max-w-2xl mx-auto">
-            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+    <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
   <Calculator className="w-8 h-8 text-orange-600" />
 </div>
 
