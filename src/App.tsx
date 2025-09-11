@@ -184,9 +184,9 @@ const SavingsCalculator = () => {
                   projectType === '' ? 'bg-teal-600' : 
                   projectType === 'gypcrete' ? 'bg-orange-500' : 'bg-gray-400'
                 }`}></div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                   Wet Gypsum Underlayment
-                </h3>
+                </h2>
                 <p className="text-gray-600 text-base mb-3 leading-relaxed">
                   Replace OSB + Wet Gypsum with MAXTERRA® MgO Fire- And Water-Resistant Underlayment
                 </p>
