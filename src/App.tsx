@@ -164,7 +164,7 @@ const SavingsCalculator = () => {
              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
                 <Calculator className="w-8 h-8 text-orange-600" />
                 <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs font-medium">$</span>
+              
                 </div>
               </div>
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-6">
