@@ -346,7 +346,7 @@ const SavingsCalculator = () => {
             <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
               <div className="flex items-center justify-between mb-4">
                 <DollarSign className="w-8 h-8" />
-                <span className="text-3xl font-bold">${results.savings.toLocaleString()}</span>
+
               </div>
               <h3 className="text-xl font-semibold mb-2">Total Project Savings</h3>
               <p className="text-green-100">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
@@ -355,7 +355,7 @@ const SavingsCalculator = () => {
             <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
               <div className="flex items-center justify-between mb-4">
                 <TrendingDown className="w-8 h-8" />
-                <span className="text-3xl font-bold">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</span>
+               
               </div>
               <h3 className="text-xl font-semibold mb-2">Cost Savings per SF</h3>
               <p className="text-blue-100">${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}</p>
