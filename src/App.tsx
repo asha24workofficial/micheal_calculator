@@ -156,65 +156,66 @@ const SavingsCalculator = () => {
 
   if (step === 1) {
     return (
-      <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-    <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-  <Calculator className="w-8 h-8 text-orange-600" />
-</div>
-
-            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-6">
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+        <div className="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-12">
+          <div className="text-center mb-12">
+            <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-8">
+              <Calculator className="w-10 h-10 text-orange-600" />
+            </div>
+            <h2 className="font-manrope font-semibold text-[48px] leading-[60px] tracking-[-0.02em] text-gray-900 mb-2">
               What are you looking to replace?
             </h2>
-            
-            <div className="grid md:grid-cols-2 gap-4">
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <button
                 onClick={() => handleProjectTypeSelect('gypcrete')}
-                className={`p-6 border-2 rounded-lg transition-colors text-left ${
+                className={`p-8 border-3 rounded-2xl transition-all duration-200 text-left hover:shadow-lg ${
                   projectType === 'gypcrete' 
-                    ? 'border-orange-500 bg-orange-50' 
-                    : 'border-gray-300 hover:border-orange-400'
+                    ? 'border-orange-500 bg-orange-50 shadow-lg' 
+                    : 'border-gray-200 hover:border-orange-300 hover:bg-orange-25'
                 }`}
               >
-                
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                   <span className="text-orange-600 font-semibold">Wet Gypsum</span> Underlayment
                 </h3>
-                <p className="text-gray-600 text-sm mb-2">
-                  Replace OSB + <span className="text-orange-600 font-semibold">Wet Gypsum</span> with MAXTERRA                 </p>
-                <p className="text-orange-600 text-xs font-medium">
-                  MgO Fire- and Water-Resistant Underlayment
+                <p className="text-gray-600 text-base mb-3 leading-relaxed">
+                  Replace OSB + <span className="text-orange-600 font-semibold">Wet Gypsum</span> with MAXTERRA®
+                </p>
+                <p className="text-orange-600 text-sm font-medium">
+                  MgO Fire- And Water-Resistant Underlayment
                 </p>
               </button>
 
               <button
                 onClick={() => handleProjectTypeSelect('subfloor')}
-                className={`p-6 border-2 rounded-lg transition-colors text-left ${
+                className={`p-8 border-3 rounded-2xl transition-all duration-200 text-left hover:shadow-lg ${
                   projectType === 'subfloor' 
-                    ? 'border-orange-500 bg-orange-50' 
-                    : 'border-gray-300 hover:border-gray-400'
+                    ? 'border-orange-500 bg-orange-50 shadow-lg' 
+                    : 'border-gray-200 hover:border-orange-300 hover:bg-orange-25'
                 }`}
               >
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Entire Subfloor System</h3>
-                <p className="text-gray-600 text-sm mb-2">
-                  Replace subfloor with MAXTERRA
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Entire Subfloor System</h3>
+                <p className="text-gray-600 text-base mb-3 leading-relaxed">
+                  Replace subfloor with MAXTERRA®
                 </p>
-                <p className="text-orange-600 text-xs font-medium">
+                <p className="text-orange-600 text-sm font-medium">
                   MgO Non-Combustible Single Layer Structural Floor Panels
                 </p>
               </button>
             </div>
 
             {projectType && (
-              <div className="text-center mt-8">
+              <div className="text-center mt-12">
                 <button
                   onClick={() => setStep(2)}
-                  className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 flex items-center justify-center mx-auto"
+                  className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-12 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center mx-auto"
                 >
                   Continue
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </button>
               </div>
             )}
-          </div>
         </div>
       </div>
     );
