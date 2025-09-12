@@ -338,19 +338,25 @@ const SavingsCalculator = () => {
 
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center mb-4">
-              <DollarSign className="w-12 h-12 text-green-600" style={{ fontFamily: 'Manrope', fontSize: '48px', lineHeight: '1' }} />
+              <DollarSign className="w-12 h-12 text-green-600" strokeWidth={3} />
             </div>
             <h2 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-gray-900 mb-2">Your Potential Savings</h2>
           </div>
 
-          <div className="bg-gradient-to-r from-[#22C55E] via-[#D1FAE5] to-[#3B82F6] rounded-xl p-6 text-white mb-8">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">
-                <DollarSign className="w-12 h-12 text-[#22C55E]" style={{ fontFamily: 'Manrope', fontSize: '48px', lineHeight: '1' }} />
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-[#22C55E] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
+                <DollarSign className="w-6 h-6 text-white" />
               </div>
               <div className="text-4xl font-bold mb-2">${results.savings.toLocaleString()}</div>
               <h3 className="text-lg font-semibold mb-2">Total Project Savings</h3>
-              <p className="text-sm mb-4">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
+              <p className="text-sm">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
+            </div>
+
+            <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
+                <TrendingDown className="w-6 h-6 text-white" />
+              </div>
               <div className="text-4xl font-bold mb-2">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
               <h3 className="text-lg font-semibold mb-2">Cost Savings per SF</h3>
               <p className="text-sm">${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}</p>
@@ -507,7 +513,7 @@ const SavingsCalculator = () => {
                   <span className="text-gray-700">Simplified scheduling and coordination</span>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">Enhanced building performance</span>
                 </div>
                 <div className="flex items-start">
