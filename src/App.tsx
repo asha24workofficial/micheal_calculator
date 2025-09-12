@@ -340,26 +340,26 @@ const SavingsCalculator = () => {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
               <DollarSign className="w-8 h-8 text-green-600" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Potential Savings</h2>
+            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-gray-900 mb-2">Your Potential Savings</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
-              <div className="flex items-center justify-between mb-4">
-                <DollarSign className="w-8 h-8" />
-                <div className="text-3xl font-bold">${results.savings.toLocaleString()}</div>
+            <div className="bg-[#22C55E] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
+                <DollarSign className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Total Project Savings</h3>
-              <p className="text-green-100">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
+              <div className="text-5xl font-bold mb-2">${results.savings.toLocaleString()}</div>
+              <h3 className="text-lg font-semibold mb-2">Total Project Savings</h3>
+              <p className="text-sm">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
-              <div className="flex items-center justify-between mb-4">
-                <TrendingDown className="w-8 h-8" />
-                <div className="text-3xl font-bold">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
+            <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
+                <TrendingDown className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Cost Savings per SF</h3>
-              <p className="text-blue-100">${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}</p>
+              <div className="text-5xl font-bold mb-2">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
+              <h3 className="text-lg font-semibold mb-2">Cost Savings per SF</h3>
+              <p className="text-sm">${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}</p>
             </div>
           </div>
 
@@ -367,10 +367,10 @@ const SavingsCalculator = () => {
             <h3 className="font-manrope font-semibold text-xl text-gray-900 mb-6">Cost Breakdown</h3>
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                <h4 className="text-sm font-medium text-gray-600 mb-2">
+                <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
-                <div className="text-3xl font-bold text-gray-900 mb-1">
+                <div className="text-4xl font-bold text-gray-900 mb-1">
                   ${results.currentCost.toLocaleString()}
                 </div>
                 <div className="text-sm text-gray-500">
@@ -378,10 +378,10 @@ const SavingsCalculator = () => {
                 </div>
               </div>
               <div className="flex-1 text-right">
-                <h4 className="text-sm font-medium text-gray-600 mb-2">
+                <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'MAXTERRA System (OSB + Underlayment)' : 'MAXTERRA Subfloor'}
                 </h4>
-                <div className="text-3xl font-bold text-green-600 mb-1">
+                <div className="text-4xl font-bold text-green-600 mb-1">
                   ${results.maxterraCost.toLocaleString()}
                 </div>
                 <div className="text-sm text-gray-500">
