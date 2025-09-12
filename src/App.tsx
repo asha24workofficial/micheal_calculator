@@ -160,9 +160,9 @@ const SavingsCalculator = () => {
         <div className="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-12">
          
             <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-                <Calculator className="w-8 h-8 text-orange-600" />
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+                <DollarSign className="w-8 h-8 text-green-600" />
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
                   <span className="text-white text-xs font-medium">$</span>
                 </div>
               </div>
@@ -175,14 +175,15 @@ const SavingsCalculator = () => {
               <button
                 onClick={() => handleProjectTypeSelect('gypcrete')}
                 className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
-                  projectType === 'gypcrete' 
-                    ? 'border-orange-500 bg-white shadow-lg' 
-                    : 'border-gray-200 hover:border-gray-300 bg-white'
+                  projectType === 'gypcrete' ? 'border-orange-500 bg-white shadow-lg' :
+                  projectType === '' ? 'border-blue-500 bg-white' :
+                  'border-gray-200 hover:border-gray-300 bg-white'
                 }`}
               >
                 <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
-                  projectType === '' ? 'bg-teal-600' : 
-                  projectType === 'gypcrete' ? 'bg-orange-500' : 'bg-gray-400'
+                  projectType === 'gypcrete' ? 'bg-orange-500' :
+                  projectType === '' ? 'bg-blue-500' :
+                  'bg-gray-400'
                 }`}></div>
                 <h4 className="text-2xl font-semibold text-gray-900 mb-4">
                   Wet Gypsum Underlayment
@@ -195,14 +196,15 @@ const SavingsCalculator = () => {
               <button
                 onClick={() => handleProjectTypeSelect('subfloor')}
                 className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
-                  projectType === 'subfloor' 
-                    ? 'border-orange-500 bg-white shadow-lg' 
-                    : 'border-gray-200 hover:border-gray-300 bg-white'
+                  projectType === 'subfloor' ? 'border-orange-500 bg-white shadow-lg' :
+                  projectType === '' ? 'border-blue-500 bg-white' :
+                  'border-gray-200 hover:border-gray-300 bg-white'
                 }`}
               >
                 <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
-                  projectType === '' ? 'bg-teal-600' : 
-                  projectType === 'subfloor' ? 'bg-orange-500' : 'bg-gray-400'
+                  projectType === 'subfloor' ? 'bg-orange-500' :
+                  projectType === '' ? 'bg-blue-500' :
+                  'bg-gray-400'
                 }`}></div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">Entire Subfloor System</h3>
                 <p className="text-gray-600 text-base mb-3 leading-relaxed">
@@ -242,9 +244,9 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-                <Calculator className="w-8 h-8 text-orange-600" />
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+                <DollarSign className="w-8 h-8 text-green-600" />
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
                   <span className="text-white text-xs font-medium">$</span>
                 </div>
               </div>
@@ -344,22 +346,22 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
-              <div className="flex items-center justify-between mb-4">
-                <DollarSign className="w-8 h-8" />
-                <div className="text-3xl font-bold">${results.savings.toLocaleString()}</div>
+            <div className="bg-[#22C55E] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
+                <DollarSign className="w-6 h-6 text-white" />
               </div>
+              <div className="text-5xl font-bold mb-2">${results.savings.toLocaleString()}</div>
               <h3 className="text-xl font-semibold mb-2">Total Project Savings</h3>
-              <p className="text-green-100">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
+              <p className="text-sm text-green-100">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
-              <div className="flex items-center justify-between mb-4">
-                <TrendingDown className="w-8 h-8" />
-                <div className="text-3xl font-bold">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
+            <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
+                <TrendingDown className="w-6 h-6 text-white" />
               </div>
+              <div className="text-5xl font-bold mb-2">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
               <h3 className="text-xl font-semibold mb-2">Cost Savings per SF</h3>
-              <p className="text-blue-100">${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}</p>
+              <p className="text-sm text-blue-100">${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}</p>
             </div>
           </div>
 
@@ -370,7 +372,7 @@ const SavingsCalculator = () => {
                 <h4 className="text-sm font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
-                <div className="text-3xl font-bold text-gray-900 mb-1">
+                <div className="text-4xl font-bold text-gray-900 mb-1">
                   ${results.currentCost.toLocaleString()}
                 </div>
                 <div className="text-sm text-gray-500">
@@ -381,7 +383,7 @@ const SavingsCalculator = () => {
                 <h4 className="text-sm font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'MAXTERRA System (OSB + Underlayment)' : 'MAXTERRA Subfloor'}
                 </h4>
-                <div className="text-3xl font-bold text-green-600 mb-1">
+                <div className="text-4xl font-bold text-green-600 mb-1">
                   ${results.maxterraCost.toLocaleString()}
                 </div>
                 <div className="text-sm text-gray-500">
@@ -460,31 +462,37 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
-            <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
-              <DollarSign className="w-10 h-10 mb-4" />
+            <div className="bg-[#22C55E] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
+                <DollarSign className="w-6 h-6 text-white" />
+              </div>
               <div className="text-3xl font-bold mb-2">${results.savings.toLocaleString()}</div>
-              <h3 className="text-lg font-semibold">Total Savings</h3>
-              <p className="text-green-100 text-sm">{results.percentSavings}% cost reduction</p>
+              <h3 className="text-lg font-semibold mb-2">Total Savings</h3>
+              <p className="text-sm text-green-100">{results.percentSavings}% cost reduction</p>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
-              <Clock className="w-10 h-10 mb-4" />
+            <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
+                <Clock className="w-6 h-6 text-white" />
+              </div>
               <div className="text-3xl font-bold mb-2">
                 {results.type === 'gypcrete' ? '7+' : 'Faster'}
               </div>
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-lg font-semibold mb-2">
                 {results.type === 'gypcrete' ? 'Days Saved' : 'Installation'}
               </h3>
-              <p className="text-blue-100 text-sm">
+              <p className="text-sm text-blue-100">
                 {results.type === 'gypcrete' ? 'No curing time required' : 'Streamlined process'}
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl p-6 text-white">
-              <Building className="w-10 h-10 mb-4" />
+            <div className="bg-[#8B5CF6] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#7C3AED] rounded-full flex items-center justify-center mb-4">
+                <Building className="w-6 h-6 text-white" />
+              </div>
               <div className="text-3xl font-bold mb-2">ICC-ESR</div>
-              <h3 className="text-lg font-semibold">Certified</h3>
-              <p className="text-purple-100 text-sm">Third-party validated performance</p>
+              <h3 className="text-lg font-semibold mb-2">Certified</h3>
+              <p className="text-sm text-purple-100">Third-party validated performance</p>
             </div>
           </div>
 
