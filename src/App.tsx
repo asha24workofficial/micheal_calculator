@@ -344,8 +344,8 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-[#10B981] rounded-xl p-6 text-white">
-              <div className="w-10 h-10 bg-[#065F46] rounded-full flex items-center justify-center mb-4">
+            <div className="bg-[#22C55E] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
                 <DollarSign className="w-6 h-6 text-white" />
               </div>
               <div className="text-4xl font-bold mb-2">${results.savings.toLocaleString()}</div>
@@ -353,8 +353,8 @@ const SavingsCalculator = () => {
               <p className="text-sm">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
             </div>
 
-            <div className="bg-[#1E40AF] rounded-xl p-6 text-white">
-              <div className="w-10 h-10 bg-[#1E3A8A] rounded-full flex items-center justify-center mb-4">
+            <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
                 <TrendingDown className="w-6 h-6 text-white" />
               </div>
               <div className="text-4xl font-bold mb-2">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
