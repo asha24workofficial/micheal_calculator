@@ -340,12 +340,12 @@ const SavingsCalculator = () => {
             <div className="inline-flex items-center justify-center mb-4">
               <DollarSign className="w-12 h-12 text-green-600" strokeWidth={3} />
             </div>
-            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-gray-900 mb-2">Your Potential Savings</h2>
+            <h2 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-gray-900 mb-2">Your Potential Savings</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-[#22C55E] rounded-xl p-6 text-white">
-              <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
+            <div className="bg-[#10B981] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#065F46] rounded-full flex items-center justify-center mb-4">
                 <DollarSign className="w-6 h-6 text-white" />
               </div>
               <div className="text-4xl font-bold mb-2">${results.savings.toLocaleString()}</div>
@@ -353,8 +353,8 @@ const SavingsCalculator = () => {
               <p className="text-sm">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
             </div>
 
-            <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
-              <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
+            <div className="bg-[#1E40AF] rounded-xl p-6 text-white">
+              <div className="w-10 h-10 bg-[#1E3A8A] rounded-full flex items-center justify-center mb-4">
                 <TrendingDown className="w-6 h-6 text-white" />
               </div>
               <div className="text-4xl font-bold mb-2">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
@@ -370,7 +370,7 @@ const SavingsCalculator = () => {
                 <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
-                <div className="text-4xl font-bold text-gray-900 mb-1">
+                <div className="text-3xl font-bold text-gray-900 mb-1">
                   ${results.currentCost.toLocaleString()}
                 </div>
                 <div className="text-sm text-gray-500">
@@ -381,7 +381,7 @@ const SavingsCalculator = () => {
                 <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'MAXTERRA System (OSB + Underlayment)' : 'MAXTERRA Subfloor'}
                 </h4>
-                <div className="text-4xl font-bold text-green-600 mb-1">
+                <div className="text-3xl font-bold text-green-600 mb-1">
                   ${results.maxterraCost.toLocaleString()}
                 </div>
                 <div className="text-sm text-gray-500">
@@ -525,7 +525,7 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-xl p-6 text-white text-center">
-            <h3 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center mb-4">Ready to Start Saving?</h3>
+            <h3 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-center mb-4">Ready to Start Saving?</h3>
             <p className="mb-6 text-lg">
               These savings are just the beginning. Let's discuss how MAXTERRA can optimize your specific project.
             </p>
