@@ -337,8 +337,8 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-              <DollarSign className="w-8 h-8 text-green-600" />
+            <div className="inline-flex items-center justify-center mb-4">
+              <DollarSign className="w-12 h-12 text-green-600" strokeWidth={3} />
             </div>
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-gray-900 mb-2">Your Potential Savings</h2>
           </div>
