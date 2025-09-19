@@ -1,16 +1,64 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  Calculator,
   ArrowRight,
   ArrowLeft,
   Building,
-  Mail,
   CheckCircle,
   Clock,
   DollarSign,
-  AlertTriangle,
   TrendingDown,
 } from 'lucide-react';
+
+/** Filled calculator + white coin with orange $ (matches the reference mock) */
+const CalculatorDollarIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    viewBox="0 0 64 64"
+    className={className}
+    role="img"
+    aria-label="Calculator with dollar coin"
+  >
+    {/* Calculator body (filled) */}
+    <rect x="8" y="6" width="36" height="52" rx="6" ry="6" fill="currentColor" />
+
+    {/* Screen */}
+    <rect x="14" y="12" width="24" height="10" rx="2" fill="#FFFFFF" />
+
+    {/* Keys (3x3) */}
+    {Array.from({ length: 3 }).map((_, row) =>
+      Array.from({ length: 3 }).map((__, col) => (
+        <rect
+          key={`${row}-${col}`}
+          x={14 + col * 8}
+          y={26 + row * 8}
+          width="6"
+          height="6"
+          rx="1.5"
+          fill="#FFFFFF"
+        />
+      ))
+    )}
+
+    {/* Large key bottom-left */}
+    <rect x="14" y="50" width="14" height="6" rx="1.5" fill="#FFFFFF" />
+
+    {/* Coin (white with orange stroke + $) */}
+    <circle cx="48" cy="44" r="14" fill="#FFFFFF" stroke="currentColor" strokeWidth="4" />
+
+    {/* Dollar sign */}
+    <text
+      x="48"
+      y="44"
+      textAnchor="middle"
+      dominantBaseline="central"
+      fontFamily="Inter, Arial, sans-serif"
+      fontWeight="700"
+      fontSize="14"
+      fill="currentColor"
+    >
+      $
+    </text>
+  </svg>
+);
 
 const SavingsCalculator = () => {
   const [step, setStep] = useState(1);
@@ -22,11 +70,8 @@ const SavingsCalculator = () => {
   const [email, setEmail] = useState('');
   const [showFullReport, setShowFullReport] = useState(false);
 
-  const handleProjectTypeSelect = (type: string) => {
-    setProjectType(type);
-  };
+  const handleProjectTypeSelect = (type: string) => setProjectType(type);
 
-  // Competitor cost data from battle cards - using maximum approved spacing for each product
   const competitorData: any = {
     structocrete: {
       name: 'STRUCTO-CRETE',
@@ -42,8 +87,8 @@ const SavingsCalculator = () => {
     },
     exacor: {
       name: 'EXACOR',
-      maxterraCost: 2.95, // MAXTERRA at 24" spacing (optimal)
-      competitorCost: 4.32, // EXACOR at 16" spacing (maximum approved)
+      maxterraCost: 2.95,
+      competitorCost: 4.32,
       savings: 1.37,
       spacingNote: 'MAXTERRA 24" O.C. vs EXACOR 16" O.C. (maximum approved spacing)',
       constructionNote: 'Based on wood open web truss construction',
@@ -67,8 +112,8 @@ const SavingsCalculator = () => {
     },
     dragonboard: {
       name: 'DragonBoard',
-      maxterraCost: 3.20, // MAXTERRA at 24" spacing
-      competitorCost: 4.48, // DragonBoard at 19.2" spacing (maximum approved)
+      maxterraCost: 3.20,
+      competitorCost: 4.48,
       savings: 1.28,
       spacingNote: 'MAXTERRA 24" O.C. vs DragonBoard 19.2" O.C. (maximum approved spacing)',
       constructionNote: 'Based on CFS open web truss construction',
@@ -94,18 +139,8 @@ const SavingsCalculator = () => {
   };
 
   const gypcreteData = {
-    current: {
-      osb: 0.70,
-      gypcrete: 2.875, // average of 2.50-3.25
-      total: 3.575,
-      process: 'Multi-trade, wet installation',
-    },
-    maxterra: {
-      osb: 0.70,
-      underlayment: 1.21,
-      total: 1.91,
-      process: 'Single trade, dry installation',
-    },
+    current: { osb: 0.70, gypcrete: 2.875, total: 3.575, process: 'Multi-trade, wet installation' },
+    maxterra: { osb: 0.70, underlayment: 1.21, total: 1.91, process: 'Single trade, dry installation' },
   };
 
   const calculateSavings = () => {
@@ -150,33 +185,22 @@ const SavingsCalculator = () => {
   };
 
   const handleCalculate = () => {
-    const calculatedResults = calculateSavings();
-    setResults(calculatedResults);
+    const r = calculateSavings();
+    setResults(r);
     setStep(3);
   };
 
   const handleGetFullReport = () => {
-    if (email) {
-      setShowFullReport(true);
-    }
+    if (email) setShowFullReport(true);
   };
 
-  // --------------------
   // STEP 1
-  // --------------------
   if (step === 1) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
         <div className="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-12">
           <div className="text-center mb-8">
-            {/* ICON: calculator + small $ badge (NO outer circle) */}
-            <div className="relative mx-auto mb-4 w-fit">
-              <Calculator className="w-12 h-12 text-orange-600" />
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-medium">$</span>
-              </div>
-            </div>
-
+            <CalculatorDollarIcon className="w-16 h-16 text-orange-600 mx-auto mb-4" />
             <h2 className="font-manrope font-semibold text-[48px] leading-[60px] tracking-[-0.02em] text-gray-900 mb-2">
               What are you looking to replace?
             </h2>
@@ -186,9 +210,7 @@ const SavingsCalculator = () => {
             <button
               onClick={() => handleProjectTypeSelect('gypcrete')}
               className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
-                projectType === 'gypcrete'
-                  ? 'border-orange-500 bg-white shadow-lg'
-                  : 'border-gray-200 hover:border-gray-300 bg-white'
+                projectType === 'gypcrete' ? 'border-orange-500 bg-white shadow-lg' : 'border-gray-200 hover:border-gray-300 bg-white'
               }`}
             >
               <div
@@ -205,9 +227,7 @@ const SavingsCalculator = () => {
             <button
               onClick={() => handleProjectTypeSelect('subfloor')}
               className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
-                projectType === 'subfloor'
-                  ? 'border-orange-500 bg-white shadow-lg'
-                  : 'border-gray-200 hover:border-gray-300 bg-white'
+                projectType === 'subfloor' ? 'border-orange-500 bg-white shadow-lg' : 'border-gray-200 hover:border-gray-300 bg-white'
               }`}
             >
               <div
@@ -238,9 +258,7 @@ const SavingsCalculator = () => {
     );
   }
 
-  // --------------------
   // STEP 2
-  // --------------------
   if (step === 2) {
     return (
       <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -256,14 +274,7 @@ const SavingsCalculator = () => {
           </div>
 
           <div className="text-center mb-8">
-            {/* ICON: calculator + small $ badge (NO outer circle) */}
-            <div className="relative mx-auto mb-4 w-fit">
-              <Calculator className="w-12 h-12 text-orange-600" />
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-medium">$</span>
-              </div>
-            </div>
-
+            <CalculatorDollarIcon className="w-16 h-16 text-orange-600 mx-auto mb-4" />
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
               Tell us about your project
             </h2>
@@ -333,9 +344,7 @@ const SavingsCalculator = () => {
     );
   }
 
-  // --------------------
   // STEP 3 (summary)
-  // --------------------
   if (step === 3 && !showFullReport) {
     return (
       <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -366,9 +375,10 @@ const SavingsCalculator = () => {
               </div>
               <div className="text-4xl font-bold mb-2">${results.savings.toLocaleString()}</div>
               <h3 className="text-lg font-semibold mb-2">Total Project Savings</h3>
-              <p className="text-sm">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
+              <p className="text-sm">
+                That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!
+              </p>
             </div>
-
             <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
               <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
                 <TrendingDown className="w-6 h-6 text-white" />
@@ -388,9 +398,7 @@ const SavingsCalculator = () => {
             <div className="flex justify-between items-start">
               <div className="flex-1">
                 <h4 className="text-base font-medium text-gray-600 mb-2">
-                  {results.type === 'gypcrete'
-                    ? 'Current System (OSB + Gypcrete)'
-                    : `Current System (${results.competitorName})`}
+                  {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
                 <div className="text-3xl font-bold text-gray-900 mb-1">${results.currentCost.toLocaleString()}</div>
                 <div className="text-sm text-gray-500">${results.currentCostPerSF.toFixed(2)}/sq ft</div>
@@ -410,9 +418,7 @@ const SavingsCalculator = () => {
               <h4 className="font-semibold text-gray-700 mb-3">Calculation Details</h4>
               <div className="text-gray-600 text-sm space-y-1">
                 <p>• {competitorData[competitorType]?.spacingNote}</p>
-                {competitorData[competitorType]?.constructionNote && (
-                  <p>• {competitorData[competitorType].constructionNote}</p>
-                )}
+                {competitorData[competitorType]?.constructionNote && <p>• {competitorData[competitorType].constructionNote}</p>}
                 <p>• For different framing or construction approaches, contact us for customized analysis</p>
               </div>
             </div>
@@ -421,8 +427,8 @@ const SavingsCalculator = () => {
           <div className="text-center">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Get Your Complete Savings Analysis</h3>
             <p className="text-gray-600 mb-6">
-              Enter your email to receive a detailed report including risk mitigation benefits, product specifications,
-              and complete competitive analysis.
+              Enter your email to receive a detailed report including risk mitigation benefits, product specifications, and
+              complete competitive analysis.
             </p>
 
             <div className="max-w-md mx-auto mb-6">
@@ -449,9 +455,7 @@ const SavingsCalculator = () => {
     );
   }
 
-  // --------------------
   // STEP 3 (full report)
-  // --------------------
   if (step === 3 && showFullReport) {
     return (
       <div className="max-w-6xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -484,9 +488,7 @@ const SavingsCalculator = () => {
             <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
               <Clock className="w-10 h-10 mb-4" />
               <div className="text-3xl font-bold mb-2">{results.type === 'gypcrete' ? '7+' : 'Faster'}</div>
-              <h3 className="text-lg font-semibold">
-                {results.type === 'gypcrete' ? 'Days Saved' : 'Installation'}
-              </h3>
+              <h3 className="text-lg font-semibold">{results.type === 'gypcrete' ? 'Days Saved' : 'Installation'}</h3>
               <p className="text-blue-100 text-sm">
                 {results.type === 'gypcrete' ? 'No curing time required' : 'Streamlined process'}
               </p>
@@ -499,83 +501,9 @@ const SavingsCalculator = () => {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Advantages</h3>
-              <div className="space-y-3">
-                {results.additionalBenefits.map((benefit: string, index: number) => (
-                  <div key={index} className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Value</h3>
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Reduced project liability and risk</span>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Simplified scheduling and coordination</span>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Enhanced building performance</span>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Long-term durability advantages</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-xl p-6 text-white text-center">
-            <h3 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-center mb-4">
-              Ready to Start Saving?
-            </h3>
-            <p className="mb-6 text-lg">
-              These savings are just the beginning. Let's discuss how MAXTERRA can optimize your specific project.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200">
-                Request Quote
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all duration-200">
-                Schedule Consultation
-              </button>
-            </div>
-            <div className="mt-4">
-              <button
-                onClick={() => {
-                  setStep(1);
-                  setProjectType('');
-                  setBuildingType('');
-                  setCompetitorType('');
-                  setResults(null);
-                  setEmail('');
-                  setShowFullReport(false);
-                }}
-                className="text-white/80 hover:text-white underline transition-colors duration-200"
-              >
-                Start New Calculation
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center text-sm text-gray-500">
+          <div className="bg-white rounded-xl text-center text-sm text-gray-500">
             <p>
-              *Calculations based on documented cost analysis using maximum approved spacing for optimal performance
-              comparison.
-              {results?.type === 'subfloor' && competitorData[competitorType]?.constructionNote &&
-                ` ${competitorData[competitorType].constructionNote}.`}
-              {results?.type === 'subfloor' &&
-                ' For different framing or construction approaches, contact us for customized analysis.'}
+              *Calculations based on documented cost analysis using maximum approved spacing for optimal performance comparison.
               Actual savings may vary by project and location.
             </p>
           </div>
