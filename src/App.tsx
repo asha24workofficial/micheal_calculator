@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, ArrowRight, ArrowLeft, Building, Mail, CheckCircle, Clock, DollarSign, AlertTriangle, TrendingDown } from 'lucide-react';
+import {
+  Calculator,
+  ArrowRight,
+  ArrowLeft,
+  Building,
+  Mail,
+  CheckCircle,
+  Clock,
+  DollarSign,
+  AlertTriangle,
+  TrendingDown,
+} from 'lucide-react';
 
 const SavingsCalculator = () => {
   const [step, setStep] = useState(1);
@@ -7,15 +18,16 @@ const SavingsCalculator = () => {
   const [buildingType, setBuildingType] = useState('');
   const [projectSize, setProjectSize] = useState(10000);
   const [competitorType, setCompetitorType] = useState('');
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState<any>(null);
   const [email, setEmail] = useState('');
   const [showFullReport, setShowFullReport] = useState(false);
 
-  const handleProjectTypeSelect = (type) => {
+  const handleProjectTypeSelect = (type: string) => {
     setProjectType(type);
   };
 
-  const competitorData = {
+  // Competitor cost data from battle cards - using maximum approved spacing for each product
+  const competitorData: any = {
     structocrete: {
       name: 'STRUCTO-CRETE',
       maxterraCost: 4.76,
@@ -25,21 +37,21 @@ const SavingsCalculator = () => {
       additionalBenefits: [
         '44-50% material cost savings',
         'No premium pricing without performance benefit',
-        'Quartz silica-free formulation'
-      ]
+        'Quartz silica-free formulation',
+      ],
     },
     exacor: {
       name: 'EXACOR',
-      maxterraCost: 2.95,
-      competitorCost: 4.32,
+      maxterraCost: 2.95, // MAXTERRA at 24" spacing (optimal)
+      competitorCost: 4.32, // EXACOR at 16" spacing (maximum approved)
       savings: 1.37,
       spacingNote: 'MAXTERRA 24" O.C. vs EXACOR 16" O.C. (maximum approved spacing)',
       constructionNote: 'Based on wood open web truss construction',
       additionalBenefits: [
         'Works with 24" O.C. vs 16" O.C. (50% fewer joists)',
         'Compatible with common wood species (S.G. ≥ 0.42)',
-        'Non-combustible E136-22 certification'
-      ]
+        'Non-combustible E136-22 certification',
+      ],
     },
     megaboard: {
       name: 'MEGABOARD',
@@ -50,21 +62,21 @@ const SavingsCalculator = () => {
       additionalBenefits: [
         'No complex installation requirements',
         'Works with standard CFS member sizes',
-        'No additional strapping requirements'
-      ]
+        'No additional strapping requirements',
+      ],
     },
     dragonboard: {
       name: 'DragonBoard',
-      maxterraCost: 3.20,
-      competitorCost: 4.48,
+      maxterraCost: 3.20, // MAXTERRA at 24" spacing
+      competitorCost: 4.48, // DragonBoard at 19.2" spacing (maximum approved)
       savings: 1.28,
       spacingNote: 'MAXTERRA 24" O.C. vs DragonBoard 19.2" O.C. (maximum approved spacing)',
       constructionNote: 'Based on CFS open web truss construction',
       additionalBenefits: [
         'ICC-ESR certified vs no certification',
         'Complete diaphragm testing with design equations',
-        'Non-combustible E136-22 certification'
-      ]
+        'Non-combustible E136-22 certification',
+      ],
     },
     nocom: {
       name: 'NOCOM',
@@ -76,24 +88,24 @@ const SavingsCalculator = () => {
       additionalBenefits: [
         'ICC-ESR certified vs no certification',
         'Third-party validated performance',
-        'Complete wet performance testing'
-      ]
-    }
+        'Complete wet performance testing',
+      ],
+    },
   };
 
   const gypcreteData = {
     current: {
       osb: 0.70,
-      gypcrete: 2.875,
+      gypcrete: 2.875, // average of 2.50-3.25
       total: 3.575,
-      process: 'Multi-trade, wet installation'
+      process: 'Multi-trade, wet installation',
     },
     maxterra: {
       osb: 0.70,
       underlayment: 1.21,
       total: 1.91,
-      process: 'Single trade, dry installation'
-    }
+      process: 'Single trade, dry installation',
+    },
   };
 
   const calculateSavings = () => {
@@ -101,7 +113,7 @@ const SavingsCalculator = () => {
       const currentCost = gypcreteData.current.total * projectSize;
       const maxterraCost = gypcreteData.maxterra.total * projectSize;
       const savings = currentCost - maxterraCost;
-      const percentSavings = ((savings / currentCost) * 100);
+      const percentSavings = (savings / currentCost) * 100;
       return {
         type: 'gypcrete',
         savings: Math.round(savings),
@@ -114,15 +126,15 @@ const SavingsCalculator = () => {
           'Eliminates 7+ day curing time',
           'Single trade installation vs multi-trade',
           'No moisture introduced into building',
-          'Meets code requirements without sound mats'
-        ]
+          'Meets code requirements without sound mats',
+        ],
       };
     } else {
       const competitor = competitorData[competitorType];
       const currentCost = competitor.competitorCost * projectSize;
       const maxterraCost = competitor.maxterraCost * projectSize;
       const savings = currentCost - maxterraCost;
-      const percentSavings = ((savings / currentCost) * 100);
+      const percentSavings = (savings / currentCost) * 100;
       return {
         type: 'subfloor',
         competitorName: competitor.name,
@@ -132,7 +144,7 @@ const SavingsCalculator = () => {
         maxterraCost: Math.round(maxterraCost),
         currentCostPerSF: competitor.competitorCost,
         maxterraCostPerSF: competitor.maxterraCost,
-        additionalBenefits: competitor.additionalBenefits
+        additionalBenefits: competitor.additionalBenefits,
       };
     }
   };
@@ -149,23 +161,27 @@ const SavingsCalculator = () => {
     }
   };
 
+  // --------------------
+  // STEP 1
+  // --------------------
   if (step === 1) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
         <div className="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-12">
           <div className="text-center mb-8">
+            {/* ICON: calculator + small $ badge (NO outer circle) */}
             <div className="relative mx-auto mb-4 w-fit">
-              <svg className="w-12 h-12 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-              </svg>
-              <svg className="absolute -bottom-1 -right-1 w-4 h-4 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-              </svg>
+              <Calculator className="w-12 h-12 text-orange-600" />
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-medium">$</span>
+              </div>
             </div>
+
             <h2 className="font-manrope font-semibold text-[48px] leading-[60px] tracking-[-0.02em] text-gray-900 mb-2">
               What are you looking to replace?
             </h2>
           </div>
+
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <button
               onClick={() => handleProjectTypeSelect('gypcrete')}
@@ -175,17 +191,17 @@ const SavingsCalculator = () => {
                   : 'border-gray-200 hover:border-gray-300 bg-white'
               }`}
             >
-              <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
-                projectType === '' ? 'bg-teal-600' :
-                projectType === 'gypcrete' ? 'bg-orange-500' : 'bg-gray-400'
-              }`}></div>
-              <h4 className="text-2xl font-semibold text-gray-900 mb-4">
-                Wet Gypsum Underlayment
-              </h4>
+              <div
+                className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
+                  projectType === '' ? 'bg-teal-600' : projectType === 'gypcrete' ? 'bg-orange-500' : 'bg-gray-400'
+                }`}
+              />
+              <h4 className="text-2xl font-semibold text-gray-900 mb-4">Wet Gypsum Underlayment</h4>
               <p className="text-gray-600 text-base mb-3 leading-relaxed">
                 Replace OSB + Wet Gypsum with MAXTERRA® MgO Fire- And Water-Resistant Underlayment
               </p>
             </button>
+
             <button
               onClick={() => handleProjectTypeSelect('subfloor')}
               className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
@@ -194,16 +210,18 @@ const SavingsCalculator = () => {
                   : 'border-gray-200 hover:border-gray-300 bg-white'
               }`}
             >
-              <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
-                projectType === '' ? 'bg-teal-600' :
-                projectType === 'subfloor' ? 'bg-orange-500' : 'bg-gray-400'
-              }`}></div>
+              <div
+                className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl ${
+                  projectType === '' ? 'bg-teal-600' : projectType === 'subfloor' ? 'bg-orange-500' : 'bg-gray-400'
+                }`}
+              />
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Entire Subfloor System</h3>
               <p className="text-gray-600 text-base mb-3 leading-relaxed">
                 Replace subfloor with MAXTERRA® MgO Non-Combustible Single Layer Structural Floor Panels
               </p>
             </button>
           </div>
+
           {projectType && (
             <div className="text-center mt-12">
               <button
@@ -219,6 +237,10 @@ const SavingsCalculator = () => {
       </div>
     );
   }
+
+  // --------------------
+  // STEP 2
+  // --------------------
   if (step === 2) {
     return (
       <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -232,24 +254,25 @@ const SavingsCalculator = () => {
               Back to project type
             </button>
           </div>
+
           <div className="text-center mb-8">
+            {/* ICON: calculator + small $ badge (NO outer circle) */}
             <div className="relative mx-auto mb-4 w-fit">
-              <svg className="w-12 h-12 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-              </svg>
-              <svg className="absolute -bottom-1 -right-1 w-4 h-4 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-              </svg>
+              <Calculator className="w-12 h-12 text-orange-600" />
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-medium">$</span>
+              </div>
             </div>
+
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
+              Tell us about your project
             </h2>
             <p className="text-gray-600">Tell us about your project for accurate savings calculations</p>
           </div>
+
           <div className="max-w-2xl mx-auto space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Project Size (sq ft)
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Project Size (sq ft)</label>
               <input
                 type="number"
                 value={projectSize}
@@ -259,10 +282,9 @@ const SavingsCalculator = () => {
                 step="100"
               />
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Building Type
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Building Type</label>
               <select
                 value={buildingType}
                 onChange={(e) => setBuildingType(e.target.value)}
@@ -277,11 +299,10 @@ const SavingsCalculator = () => {
                 <option value="other">Other</option>
               </select>
             </div>
+
             {projectType === 'subfloor' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Current Subfloor Product
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Current Subfloor Product</label>
                 <select
                   value={competitorType}
                   onChange={(e) => setCompetitorType(e.target.value)}
@@ -296,6 +317,7 @@ const SavingsCalculator = () => {
                 </select>
               </div>
             )}
+
             <div className="text-center pt-4">
               <button
                 onClick={handleCalculate}
@@ -310,6 +332,10 @@ const SavingsCalculator = () => {
       </div>
     );
   }
+
+  // --------------------
+  // STEP 3 (summary)
+  // --------------------
   if (step === 3 && !showFullReport) {
     return (
       <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -323,12 +349,16 @@ const SavingsCalculator = () => {
               Back to project details
             </button>
           </div>
+
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center mb-4">
               <DollarSign className="w-12 h-12 text-green-600" strokeWidth={3} />
             </div>
-            <h2 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-gray-900 mb-2">Your Potential Savings</h2>
+            <h2 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-gray-900 mb-2">
+              Your Potential Savings
+            </h2>
           </div>
+
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-[#22C55E] rounded-xl p-6 text-white">
               <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
@@ -338,42 +368,43 @@ const SavingsCalculator = () => {
               <h3 className="text-lg font-semibold mb-2">Total Project Savings</h3>
               <p className="text-sm">That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!</p>
             </div>
+
             <div className="bg-[#3B82F6] rounded-xl p-6 text-white">
               <div className="w-10 h-10 bg-[#2563EB] rounded-full flex items-center justify-center mb-4">
                 <TrendingDown className="w-6 h-6 text-white" />
               </div>
-              <div className="text-4xl font-bold mb-2">${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
+              <div className="text-4xl font-bold mb-2">
+                ${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}
+              </div>
               <h3 className="text-lg font-semibold mb-2">Cost Savings per SF</h3>
-              <p className="text-sm">${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}</p>
+              <p className="text-sm">
+                ${results.maxterraCostPerSF.toFixed(2)} vs ${results.currentCostPerSF.toFixed(2)}
+              </p>
             </div>
           </div>
+
           <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
             <h3 className="font-manrope font-semibold text-xl text-gray-900 mb-6">Cost Breakdown</h3>
             <div className="flex justify-between items-start">
               <div className="flex-1">
                 <h4 className="text-base font-medium text-gray-600 mb-2">
-                  {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
+                  {results.type === 'gypcrete'
+                    ? 'Current System (OSB + Gypcrete)'
+                    : `Current System (${results.competitorName})`}
                 </h4>
-                <div className="text-3xl font-bold text-gray-900 mb-1">
-                  ${results.currentCost.toLocaleString()}
-                </div>
-                <div className="text-sm text-gray-500">
-                  ${results.currentCostPerSF.toFixed(2)}/sq ft
-                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">${results.currentCost.toLocaleString()}</div>
+                <div className="text-sm text-gray-500">${results.currentCostPerSF.toFixed(2)}/sq ft</div>
               </div>
               <div className="flex-1 text-right">
                 <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'MAXTERRA System (OSB + Underlayment)' : 'MAXTERRA Subfloor'}
                 </h4>
-                <div className="text-3xl font-bold text-green-600 mb-1">
-                  ${results.maxterraCost.toLocaleString()}
-                </div>
-                <div className="text-sm text-gray-500">
-                  ${results.maxterraCostPerSF.toFixed(2)}/sq ft
-                </div>
+                <div className="text-3xl font-bold text-green-600 mb-1">${results.maxterraCost.toLocaleString()}</div>
+                <div className="text-sm text-gray-500">${results.maxterraCostPerSF.toFixed(2)}/sq ft</div>
               </div>
             </div>
           </div>
+
           {results.type === 'subfloor' && (
             <div className="bg-gray-50 rounded-xl p-6 mb-6">
               <h4 className="font-semibold text-gray-700 mb-3">Calculation Details</h4>
@@ -386,14 +417,14 @@ const SavingsCalculator = () => {
               </div>
             </div>
           )}
+
           <div className="text-center">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Get Your Complete Savings Analysis
-            </h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Get Your Complete Savings Analysis</h3>
             <p className="text-gray-600 mb-6">
-              Enter your email to receive a detailed report including risk mitigation benefits,
-              product specifications, and complete competitive analysis.
+              Enter your email to receive a detailed report including risk mitigation benefits, product specifications,
+              and complete competitive analysis.
             </p>
+
             <div className="max-w-md mx-auto mb-6">
               <div className="flex gap-2">
                 <input
@@ -417,6 +448,10 @@ const SavingsCalculator = () => {
       </div>
     );
   }
+
+  // --------------------
+  // STEP 3 (full report)
+  // --------------------
   if (step === 3 && showFullReport) {
     return (
       <div className="max-w-6xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -430,6 +465,7 @@ const SavingsCalculator = () => {
               Back to savings summary
             </button>
           </div>
+
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
               <CheckCircle className="w-8 h-8 text-green-600" />
@@ -437,6 +473,7 @@ const SavingsCalculator = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Complete Savings Analysis</h2>
             <p className="text-gray-600">Detailed comparison and benefits analysis</p>
           </div>
+
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
             <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
               <DollarSign className="w-10 h-10 mb-4" />
@@ -446,9 +483,7 @@ const SavingsCalculator = () => {
             </div>
             <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white">
               <Clock className="w-10 h-10 mb-4" />
-              <div className="text-3xl font-bold mb-2">
-                {results.type === 'gypcrete' ? '7+' : 'Faster'}
-              </div>
+              <div className="text-3xl font-bold mb-2">{results.type === 'gypcrete' ? '7+' : 'Faster'}</div>
               <h3 className="text-lg font-semibold">
                 {results.type === 'gypcrete' ? 'Days Saved' : 'Installation'}
               </h3>
@@ -463,11 +498,12 @@ const SavingsCalculator = () => {
               <p className="text-purple-100 text-sm">Third-party validated performance</p>
             </div>
           </div>
+
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
             <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Advantages</h3>
               <div className="space-y-3">
-                {results.additionalBenefits.map((benefit, index) => (
+                {results.additionalBenefits.map((benefit: string, index: number) => (
                   <div key={index} className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">{benefit}</span>
@@ -475,30 +511,34 @@ const SavingsCalculator = () => {
                 ))}
               </div>
             </div>
+
             <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Value</h3>
               <div className="space-y-3">
                 <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">Reduced project liability and risk</span>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">Simplified scheduling and coordination</span>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">Enhanced building performance</span>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">Long-term durability advantages</span>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-xl p-6 text-white text-center">
-            <h3 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-center mb-4">Ready to Start Saving?</h3>
+            <h3 className="font-manrope font-semibold text-[24px] leading-[36px] tracking-[-0.03em] text-center mb-4">
+              Ready to Start Saving?
+            </h3>
             <p className="mb-6 text-lg">
               These savings are just the beginning. Let's discuss how MAXTERRA can optimize your specific project.
             </p>
@@ -527,20 +567,24 @@ const SavingsCalculator = () => {
               </button>
             </div>
           </div>
+
           <div className="mt-8 text-center text-sm text-gray-500">
-            <p>*Calculations based on documented cost analysis using maximum approved spacing for optimal performance comparison.
-            {results?.type === 'subfloor' && competitorData[competitorType]?.constructionNote &&
-              ` ${competitorData[competitorType].constructionNote}.`
-            }
-            {results?.type === 'subfloor' &&
-              ' For different framing or construction approaches, contact us for customized analysis.'
-            }
-            Actual savings may vary by project and location.</p>
+            <p>
+              *Calculations based on documented cost analysis using maximum approved spacing for optimal performance
+              comparison.
+              {results?.type === 'subfloor' && competitorData[competitorType]?.constructionNote &&
+                ` ${competitorData[competitorType].constructionNote}.`}
+              {results?.type === 'subfloor' &&
+                ' For different framing or construction approaches, contact us for customized analysis.'}
+              Actual savings may vary by project and location.
+            </p>
           </div>
         </div>
       </div>
     );
   }
+
+  return null;
 };
 
 export default SavingsCalculator;
