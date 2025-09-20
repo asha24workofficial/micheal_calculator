@@ -340,20 +340,20 @@ const SavingsCalculator = () => {
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
             <h3 className="font-manrope font-medium text-base leading-[18px] tracking-[-0.01em] text-[#212121] mb-6">Cost Breakdown</h3>
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl border border-gray-200 p-6">
                 <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
                 <div className="font-manrope font-extrabold text-[28px] leading-[18px] tracking-[-0.01em] text-[#212121] mb-1">${results.currentCost.toLocaleString()}</div>
                 <div className="font-manrope font-medium text-sm leading-[20px] tracking-[0.01em] text-costBreakdownGray opacity-60">${results.currentCostPerSF.toFixed(2)}/sq ft</div>
               </div>
-              <div className="flex-1 text-right">
-                <h4 className="text-base font-medium text-gray-600 mb-2">
+              <div className="bg-maxterraCardBackground rounded-xl p-6">
+                <h4 className="font-manrope font-bold text-base leading-[20px] tracking-[-0.01em] text-[#212121] mb-2">
                   {results.type === 'gypcrete' ? 'MAXTERRA System (OSB + Underlayment)' : 'MAXTERRA Subfloor'}
                 </h4>
-                <div className="text-3xl font-bold text-green-600 mb-1">${results.maxterraCost.toLocaleString()}</div>
-                <div className="text-sm text-gray-500">${results.maxterraCostPerSF.toFixed(2)}/sq ft</div>
+                <div className="font-manrope font-extrabold text-[28px] leading-[18px] tracking-[-0.01em] text-green-600 mb-1">${results.maxterraCost.toLocaleString()}</div>
+                <div className="font-manrope font-medium text-sm leading-[20px] tracking-[0.01em] text-costBreakdownGray opacity-60">${results.maxterraCostPerSF.toFixed(2)}/sq ft</div>
               </div>
             </div>
           </div>
