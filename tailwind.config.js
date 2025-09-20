@@ -18,6 +18,7 @@ export default {
         gradientBlueStart: '#1AA9E2',
         gradientBlueEnd: '#0F6D92',
         costBreakdownGray: '#25647D',
+        maxterraCardBackground: '#E6FAE6',
       },
     },
   },
