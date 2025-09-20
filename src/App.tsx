@@ -319,13 +319,13 @@ const SavingsCalculator = () => {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-[#22C55E] rounded-xl p-6 text-white">
+            <div className="bg-gradient-to-r from-gradientGreenStart to-gradientGreenEnd rounded-xl p-6 text-white">
               <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
                 <DollarSign className="w-6 h-6 text-white" />
               </div>
               <div className="text-4xl font-bold mb-2">${results.savings.toLocaleString()}</div>
-              <h3 className="text-lg font-semibold mb-2">Total Project Savings</h3>
-              <p className="text-sm">
+              <h3 className="text-lg font-bold mb-2">Total Project Savings</h3>
+              <p className="font-medium text-sm">
                 That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!
               </p>
             </div>
