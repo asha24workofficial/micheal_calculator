@@ -9,57 +9,6 @@ import {
   TrendingDown,
 } from 'lucide-react';
 
-/** Filled calculator + white coin with orange $ (matches the reference mock) */
-const CalculatorDollarIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    viewBox="0 0 64 64"
-    className={className}
-    role="img"
-    aria-label="Calculator with dollar coin"
-  >
-    {/* Calculator body (filled) */}
-    <rect x="8" y="6" width="36" height="52" rx="6" ry="6" fill="currentColor" />
-
-    {/* Screen */}
-    <rect x="14" y="12" width="24" height="10" rx="2" fill="#FFFFFF" />
-
-    {/* Keys (3x3) */}
-    {Array.from({ length: 3 }).map((_, row) =>
-      Array.from({ length: 3 }).map((__, col) => (
-        <rect
-          key={`${row}-${col}`}
-          x={14 + col * 8}
-          y={26 + row * 8}
-          width="6"
-          height="6"
-          rx="1.5"
-          fill="#FFFFFF"
-        />
-      ))
-    )}
-
-    {/* Large key bottom-left */}
-    <rect x="14" y="50" width="14" height="6" rx="1.5" fill="#FFFFFF" />
-
-    {/* Coin (white with orange stroke + $) */}
-    <circle cx="48" cy="44" r="14" fill="#FFFFFF" stroke="currentColor" strokeWidth="4" />
-
-    {/* Dollar sign */}
-    <text
-      x="48"
-      y="44"
-      textAnchor="middle"
-      dominantBaseline="central"
-      fontFamily="Inter, Arial, sans-serif"
-      fontWeight="700"
-      fontSize="14"
-      fill="currentColor"
-    >
-      $
-    </text>
-  </svg>
-);
-
 const SavingsCalculator = () => {
   const [step, setStep] = useState(1);
   const [projectType, setProjectType] = useState('');
@@ -200,12 +149,11 @@ const SavingsCalculator = () => {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
         <div className="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-12">
           <div className="text-center mb-8">
-            <CalculatorDollarIcon className="w-16 h-16 text-orange-600 mx-auto mb-4" />
+            <img src="/image copy.png" alt="Calculator with dollar sign" className="w-16 h-16 mx-auto mb-4" />
             <h2 className="font-manrope font-semibold text-[48px] leading-[60px] tracking-[-0.02em] text-gray-900 mb-2">
               What are you looking to replace?
             </h2>
           </div>
-
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <button
               onClick={() => handleProjectTypeSelect('gypcrete')}
@@ -223,7 +171,6 @@ const SavingsCalculator = () => {
                 Replace OSB + Wet Gypsum with MAXTERRA® MgO Fire- And Water-Resistant Underlayment
               </p>
             </button>
-
             <button
               onClick={() => handleProjectTypeSelect('subfloor')}
               className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
@@ -241,7 +188,6 @@ const SavingsCalculator = () => {
               </p>
             </button>
           </div>
-
           {projectType && (
             <div className="text-center mt-12">
               <button
@@ -272,15 +218,13 @@ const SavingsCalculator = () => {
               Back to project type
             </button>
           </div>
-
           <div className="text-center mb-8">
-            <CalculatorDollarIcon className="w-16 h-16 text-orange-600 mx-auto mb-4" />
+            <img src="/image copy.png" alt="Calculator with dollar sign" className="w-16 h-16 mx-auto mb-4" />
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
               Tell us about your project
             </h2>
             <p className="text-gray-600">Tell us about your project for accurate savings calculations</p>
           </div>
-
           <div className="max-w-2xl mx-auto space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Project Size (sq ft)</label>
@@ -293,7 +237,6 @@ const SavingsCalculator = () => {
                 step="100"
               />
             </div>
-
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Building Type</label>
               <select
@@ -310,7 +253,6 @@ const SavingsCalculator = () => {
                 <option value="other">Other</option>
               </select>
             </div>
-
             {projectType === 'subfloor' && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Current Subfloor Product</label>
@@ -328,7 +270,6 @@ const SavingsCalculator = () => {
                 </select>
               </div>
             )}
-
             <div className="text-center pt-4">
               <button
                 onClick={handleCalculate}
@@ -358,7 +299,6 @@ const SavingsCalculator = () => {
               Back to project details
             </button>
           </div>
-
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center mb-4">
               <DollarSign className="w-12 h-12 text-green-600" strokeWidth={3} />
@@ -367,7 +307,6 @@ const SavingsCalculator = () => {
               Your Potential Savings
             </h2>
           </div>
-
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-[#22C55E] rounded-xl p-6 text-white">
               <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
@@ -392,7 +331,6 @@ const SavingsCalculator = () => {
               </p>
             </div>
           </div>
-
           <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
             <h3 className="font-manrope font-semibold text-xl text-gray-900 mb-6">Cost Breakdown</h3>
             <div className="flex justify-between items-start">
@@ -412,7 +350,6 @@ const SavingsCalculator = () => {
               </div>
             </div>
           </div>
-
           {results.type === 'subfloor' && (
             <div className="bg-gray-50 rounded-xl p-6 mb-6">
               <h4 className="font-semibold text-gray-700 mb-3">Calculation Details</h4>
@@ -423,14 +360,12 @@ const SavingsCalculator = () => {
               </div>
             </div>
           )}
-
           <div className="text-center">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Get Your Complete Savings Analysis</h3>
             <p className="text-gray-600 mb-6">
               Enter your email to receive a detailed report including risk mitigation benefits, product specifications, and
               complete competitive analysis.
             </p>
-
             <div className="max-w-md mx-auto mb-6">
               <div className="flex gap-2">
                 <input
@@ -469,7 +404,6 @@ const SavingsCalculator = () => {
               Back to savings summary
             </button>
           </div>
-
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
               <CheckCircle className="w-8 h-8 text-green-600" />
@@ -477,7 +411,6 @@ const SavingsCalculator = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Complete Savings Analysis</h2>
             <p className="text-gray-600">Detailed comparison and benefits analysis</p>
           </div>
-
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
             <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
               <DollarSign className="w-10 h-10 mb-4" />
@@ -500,7 +433,6 @@ const SavingsCalculator = () => {
               <p className="text-purple-100 text-sm">Third-party validated performance</p>
             </div>
           </div>
-
           <div className="bg-white rounded-xl text-center text-sm text-gray-500">
             <p>
               *Calculations based on documented cost analysis using maximum approved spacing for optimal performance comparison.
