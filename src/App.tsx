@@ -368,8 +368,8 @@ const SavingsCalculator = () => {
             </div>
           )}
           <div className="text-center">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Get Your Complete Savings Analysis</h3>
-            <p className="text-gray-600 mb-6">
+            <h3 className="font-manrope font-bold text-xl leading-[39px] tracking-[-0.01em] text-center text-textDarkBlack mb-4">Get Your Complete Savings Analysis</h3>
+            <p className="font-manrope font-normal text-sm leading-[20px] tracking-normal text-center text-darkGray mb-6">
               Enter your email to receive a detailed report including risk mitigation benefits, product specifications, and
               complete competitive analysis.
             </p>
@@ -380,12 +380,12 @@ const SavingsCalculator = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none"
+                  className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-[7px] focus:border-orange-500 focus:outline-none placeholder-placeholderGray font-manrope font-normal text-sm leading-[20px] tracking-normal text-center"
                 />
                 <button
                   onClick={handleGetFullReport}
                   disabled={!email}
-                  className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-gradient-to-r from-gradientOrangeStart to-gradientOrangeEnd text-white px-6 py-3 rounded-[7px] font-semibold hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Get Report
                 </button>
