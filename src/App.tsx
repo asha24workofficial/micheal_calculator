@@ -151,9 +151,8 @@ const SavingsCalculator = () => {
           <div className="text-center mb-8">
             <img src="/image copy.png" alt="Calculator with dollar sign" className="w-22 h-20 mx-auto mb-4" />
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-black mb-2">
-  What are you looking to replace?
-</h2>
-
+              What are you looking to replace?
+            </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <button
@@ -179,7 +178,7 @@ const SavingsCalculator = () => {
               <div
                 className="absolute left-0 top-0 bottom-0 w-4 rounded-l-2xl bg-customDarkBlue"
               />
-              <h4 className="text-lg font-bold text-darkGray mb-4 leading-[39px] tracking-[-0.01em]">Entire Subfloor System</h4>
+              <h3 className="text-lg font-bold text-darkGray mb-4 leading-[39px] tracking-[-0.01em]">Entire Subfloor System</h3>
               <p className="font-medium text-sm leading-[20px] tracking-normal text-darkGray mb-3">
                 Replace subfloor with <span className="font-bold text-darkGray">MAXTERRA® MgO Non-Combustible Single Layer Structural Floor Panels</span>
               </p>
