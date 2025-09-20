@@ -12,6 +12,7 @@ export default {
         darkGray: '#444445',
         selectedOrange: '#FC611D',
         unselectedGray: '#AFAFAF',
+        borderLightGray: '#D9D9D9',
       },
     },
   },
