@@ -329,7 +329,7 @@ const SavingsCalculator = () => {
             </div>
             <div className="bg-gradient-to-r from-gradientBlueStart to-gradientBlueEnd rounded-xl p-6 text-white">
               <div className="flex items-center mb-2">
-                <img src="/trend.png" alt="Upward trend arrow" className="w-12 h-10 mr-2" />
+                <img src="/trend.png" alt="Upward trend arrow" className="w-12 h-8 mr-2" />
                 <div className="text-4xl font-bold">{(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
               </div>
               <h3 className="text-lg font-bold mb-2">Cost Savings per SF</h3>
