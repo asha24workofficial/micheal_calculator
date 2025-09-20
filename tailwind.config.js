@@ -15,6 +15,8 @@ export default {
         borderLightGray: '#D9D9D9',
         gradientGreenStart: '#22C35F',
         gradientGreenEnd: '#049769',
+        gradientBlueStart: '#1AA9E2',
+        gradientBlueEnd: '#0F6D92',
       },
     },
   },
