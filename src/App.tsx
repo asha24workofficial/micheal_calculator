@@ -5,7 +5,6 @@ import {
   Building,
   CheckCircle,
   Clock,
-  DollarSign,
   TrendingDown,
 } from 'lucide-react';
 
@@ -321,9 +320,25 @@ const SavingsCalculator = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-gradient-to-r from-gradientGreenStart to-gradientGreenEnd rounded-xl p-6 text-white">
               <div className="w-10 h-10 bg-[#16A34A] rounded-full flex items-center justify-center mb-4">
-                <DollarSign className="w-6 h-6 text-white" />
+                <svg width="24" height="24" viewBox="0 0 805 852" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white">
+                  <g filter="url(#filter0_d_2672_157)">
+                    <rect x="36" y="32" width="733" height="780" rx="22" fill="white"/>
+                  </g>
+                  <defs>
+                    <filter id="filter0_d_2672_157" x="0.700001" y="0.700001" width="803.6" height="850.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                      <feOffset dy="4"/>
+                      <feGaussianBlur stdDeviation="17.65"/>
+                      <feComposite in2="hardAlpha" operator="out"/>
+                      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"/>
+                      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2672_157"/>
+                      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2672_157" result="shape"/>
+                    </filter>
+                  </defs>
+                </svg>
               </div>
-              <div className="text-4xl font-bold mb-2">${results.savings.toLocaleString()}</div>
+              <div className="text-4xl font-bold mb-2">{results.savings.toLocaleString()}</div>
               <h3 className="text-lg font-bold mb-2">Total Project Savings</h3>
               <p className="font-medium text-sm">
                 That's {results.percentSavings}% less than {results.competitorName || 'gypcrete'}!
@@ -334,7 +349,7 @@ const SavingsCalculator = () => {
                 <TrendingDown className="w-6 h-6 text-white" />
               </div>
               <div className="text-4xl font-bold mb-2">
-                ${(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}
+                {(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}
               </div>
               <h3 className="text-lg font-semibold mb-2">Cost Savings per SF</h3>
               <p className="text-sm">
@@ -424,8 +439,24 @@ const SavingsCalculator = () => {
           </div>
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
             <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
-              <DollarSign className="w-10 h-10 mb-4" />
-              <div className="text-3xl font-bold mb-2">${results.savings.toLocaleString()}</div>
+              <svg width="24" height="24" viewBox="0 0 805 852" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 mb-4">
+                <g filter="url(#filter0_d_2672_157)">
+                  <rect x="36" y="32" width="733" height="780" rx="22" fill="white"/>
+                </g>
+                <defs>
+                  <filter id="filter0_d_2672_157" x="0.700001" y="0.700001" width="803.6" height="850.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="4"/>
+                    <feGaussianBlur stdDeviation="17.65"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2672_157"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2672_157" result="shape"/>
+                  </filter>
+                </defs>
+              </svg>
+              <div className="text-3xl font-bold mb-2">{results.savings.toLocaleString()}</div>
               <h3 className="text-lg font-semibold">Total Savings</h3>
               <p className="text-green-100 text-sm">{results.percentSavings}% cost reduction</p>
             </div>
