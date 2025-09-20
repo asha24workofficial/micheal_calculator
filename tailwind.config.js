@@ -17,6 +17,7 @@ export default {
         gradientGreenEnd: '#049769',
         gradientBlueStart: '#1AA9E2',
         gradientBlueEnd: '#0F6D92',
+        costBreakdownGray: '#25647D',
       },
     },
   },
