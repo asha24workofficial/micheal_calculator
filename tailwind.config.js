@@ -13,6 +13,8 @@ export default {
         selectedOrange: '#FC611D',
         unselectedGray: '#AFAFAF',
         borderLightGray: '#D9D9D9',
+        gradientGreenStart: '#22C35F',
+        gradientGreenEnd: '#049769',
       },
     },
   },
