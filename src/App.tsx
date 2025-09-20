@@ -307,7 +307,7 @@ const SavingsCalculator = () => {
           </div>
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center mb-4">
-            <img src="/image.png" alt="Dollar sign icon" className="w-10 h-10 mr-2" />
+            <img src="/image.png" alt="Dollar sign icon" className="w-12 h-10 mr-2" />
             </div>
             <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-gray-900 mb-2">
               Your Potential Savings
