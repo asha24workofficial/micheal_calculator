@@ -150,7 +150,7 @@ const SavingsCalculator = () => {
         <div className="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-12">
           <div className="text-center mb-8">
             <img src="/image copy.png" alt="Calculator with dollar sign" className="w-22 h-20 mx-auto mb-4" />
-            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-black mb-2">
+            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
               What are you looking to replace?
             </h2>
           </div>
@@ -158,7 +158,7 @@ const SavingsCalculator = () => {
             <button
               onClick={() => handleProjectTypeSelect('gypcrete')}
               className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
-                projectType === 'gypcrete' ? 'border-orange-500 bg-white shadow-lg' : 'border-gray-200 hover:border-gray-300 bg-white'
+                projectType === 'gypcrete' ? 'border-selectedOrange bg-white shadow-lg' : 'border-unselectedGray bg-white'
               }`}
             >
               <div
@@ -172,7 +172,7 @@ const SavingsCalculator = () => {
             <button
               onClick={() => handleProjectTypeSelect('subfloor')}
               className={`p-8 border-2 rounded-2xl transition-all duration-200 text-left hover:shadow-lg relative ${
-                projectType === 'subfloor' ? 'border-orange-500 bg-white shadow-lg' : 'border-gray-200 hover:border-gray-300 bg-white'
+                projectType === 'subfloor' ? 'border-selectedOrange bg-white shadow-lg' : 'border-unselectedGray bg-white'
               }`}
             >
               <div
