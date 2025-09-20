@@ -228,29 +228,29 @@ const SavingsCalculator = () => {
           </div>
           <div className="text-center mb-8">
             <img src="/image copy.png" alt="Calculator with dollar sign" className="w-22 h-20 mx-auto mb-4" />
-            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-gray-900 mb-2">
-              Tell us about your project
+            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-black mb-2">
+              Project Details
             </h2>
-            <p className="text-gray-600">Tell us about your project for accurate savings calculations</p>
+            <p className="font-manrope font-normal text-gray-600">Tell us about your project for accurate savings calculations</p>
           </div>
           <div className="max-w-2xl mx-auto space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Project Size (sq ft)</label>
+              <label className="block text-base font-semibold text-gray-700 mb-2 leading-[39px] tracking-[-0.01em]">Project Size (sq ft)</label>
               <input
                 type="number"
                 value={projectSize}
                 onChange={(e) => setProjectSize(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none text-lg"
+                className="w-full px-4 py-3 border border-borderLightGray rounded-[7px] focus:border-orange-500 focus:outline-none text-lg leading-[39px] tracking-[-0.01em] text-center"
                 min="100"
                 step="100"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Building Type</label>
+              <label className="block text-base font-semibold text-gray-700 mb-2 leading-[39px] tracking-[-0.01em]">Building Type</label>
               <select
                 value={buildingType}
                 onChange={(e) => setBuildingType(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none text-lg"
+                className="w-full px-4 py-3 border border-borderLightGray rounded-[7px] focus:border-orange-500 focus:outline-none text-lg leading-[39px] tracking-[-0.01em] text-center"
               >
                 <option value="">Select building type...</option>
                 <option value="multifamily">Multi-family Residential</option>
@@ -263,11 +263,11 @@ const SavingsCalculator = () => {
             </div>
             {projectType === 'subfloor' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Current Subfloor Product</label>
+                <label className="block text-base font-semibold text-gray-700 mb-2 leading-[39px] tracking-[-0.01em]">Current Subfloor Product</label>
                 <select
                   value={competitorType}
                   onChange={(e) => setCompetitorType(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none text-lg"
+                  className="w-full px-4 py-3 border border-borderLightGray rounded-[7px] focus:border-orange-500 focus:outline-none text-lg leading-[39px] tracking-[-0.01em] text-center"
                 >
                   <option value="">Select current product...</option>
                   <option value="structocrete">STRUCTO-CRETE</option>
@@ -435,7 +435,7 @@ const SavingsCalculator = () => {
               </p>
             </div>
             <div className="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl p-6 text-white">
-              <Building className="w-10 h-10 mb-4" />
+              <DollarSign className="w-10 h-10 mb-4" />
               <div className="text-3xl font-bold mb-2">ICC-ESR</div>
               <h3 className="text-lg font-semibold">Certified</h3>
               <p className="text-purple-100 text-sm">Third-party validated performance</p>
