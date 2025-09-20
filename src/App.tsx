@@ -319,7 +319,7 @@ const SavingsCalculator = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-gradient-to-r from-gradientGreenStart to-gradientGreenEnd rounded-xl p-6 text-white">
               <div className="flex items-center mb-2">
-                <img src="/image.png" alt="Dollar sign icon" className="w-10 h-14 mr-2" />
+                <img src="/image.png" alt="Dollar sign icon" className="w-10 h-10 mr-2" />
                 <div className="text-4xl font-bold">{results.savings.toLocaleString()}</div>
               </div>
               <h3 className="text-lg font-bold mb-2">Total Project Savings</h3>
@@ -329,7 +329,7 @@ const SavingsCalculator = () => {
             </div>
             <div className="bg-gradient-to-r from-gradientBlueStart to-gradientBlueEnd rounded-xl p-6 text-white">
               <div className="flex items-center mb-2">
-                <img src="/trend.png" alt="Upward trend arrow" className="w-12 h-9 mr-2" />
+                <img src="/image.png" alt="Upward trend arrow" className="w-10 h-10 mr-2" />
                 <div className="text-4xl font-bold">{(results.currentCostPerSF - results.maxterraCostPerSF).toFixed(2)}</div>
               </div>
               <h3 className="text-lg font-bold mb-2">Cost Savings per SF</h3>
@@ -339,7 +339,7 @@ const SavingsCalculator = () => {
             </div>
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
-            <h3 className="font-manrope font-semibold text-xl text-gray-900 mb-6">Cost Breakdown</h3>
+            <h3 className="font-manrope font-medium text-base leading-[18px] tracking-[-0.01em] text-[#212121] mb-6">Cost Breakdown</h3>
             <div className="flex justify-between items-start">
               <div className="flex-1">
                 <h4 className="text-base font-medium text-gray-600 mb-2">
