@@ -9,18 +9,8 @@ import {
   TrendingDown,
 } from 'lucide-react';
 
-// Existing content...
-theme: {
-  extend: {
-    fontFamily: {
-      'manrope': ['Manrope', 'sans-serif'],
-    },
-    colors: { // Add this block
-      customBlue: '#3EA0C6',
-    },
-  },
-},
-// Existing content...
+
+
 
 
 const SavingsCalculator = () => {
