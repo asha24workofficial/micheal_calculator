@@ -211,87 +211,6 @@ const SavingsCalculator = () => {
   }
 
   // STEP 2
-  if (step === 2) {
-    return (
-      <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <div className="mb-6">
-            <button
-              onClick={() => setStep(1)}
-              className="flex items-center text-gray-600 hover:text-orange-600 transition-colors duration-200"
-            >
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              Back to project type
-            </button>
-          </div>
-          <div className="text-center mb-8">
-            <img src="/image copy.png" alt="Calculator with dollar sign" className="w-22 h-20 mx-auto mb-4" />
-            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-black mb-2">
-              Project Details
-            </h2>
-            <p className="font-manrope font-normal text-gray-600">Tell us about your project for accurate savings calculations</p>
-          </div>
-          <div className="max-w-2xl mx-auto space-y-6">
-            <div>
-              <label className="block text-base font-semibold text-gray-700 mb-2 leading-[39px] tracking-[-0.01em]">Project Size (sq ft)</label>
-              <input
-                type="number"
-                value={projectSize}
-                onChange={(e) => setProjectSize(Number(e.target.value))}
-                className="w-full px-4 py-3 border border-borderLightGray rounded-[7px] focus:border-orange-500 focus:outline-none text-lg leading-[39px] tracking-[-0.01em] text-center"
-                min="100"
-                step="100"
-              />
-            </div>
-            <div>
-              <label className="block text-base font-semibold text-gray-700 mb-2 leading-[39px] tracking-[-0.01em]">Building Type</label>
-              <select
-                value={buildingType}
-                onChange={(e) => setBuildingType(e.target.value)}
-                className="w-full px-4 py-3 border border-borderLightGray rounded-[7px] focus:border-orange-500 focus:outline-none text-lg leading-[39px] tracking-[-0.01em] text-center"
-              >
-                <option value="">Select building type...</option>
-                <option value="multifamily">Multi-family Residential</option>
-                <option value="hotel">Hotel/Hospitality</option>
-                <option value="commercial">Commercial Office</option>
-                <option value="retail">Retail/Mixed-use</option>
-                <option value="singlefamily">Single-family Residential</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            {projectType === 'subfloor' && (
-              <div>
-                <label className="block text-base font-semibold text-gray-700 mb-2 leading-[39px] tracking-[-0.01em]">Current Subfloor Product</label>
-                <select
-                  value={competitorType}
-                  onChange={(e) => setCompetitorType(e.target.value)}
-                  className="w-full px-4 py-3 border border-borderLightGray rounded-[7px] focus:border-orange-500 focus:outline-none text-lg leading-[39px] tracking-[-0.01em] text-center"
-                >
-                  <option value="">Select current product...</option>
-                  <option value="structocrete">STRUCTO-CRETE</option>
-                  <option value="exacor">EXACOR</option>
-                  <option value="megaboard">MEGABOARD</option>
-                  <option value="dragonboard">DragonBoard</option>
-                  <option value="nocom">NOCOM</option>
-                </select>
-              </div>
-            )}
-            <div className="text-center pt-4">
-              <button
-                onClick={handleCalculate}
-                disabled={projectType === 'subfloor' && (!competitorType || !buildingType)}
-                className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-12 py-4 rounded-lg text-xl font-bold hover:shadow-2xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Calculate My Savings
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // STEP 3 (summary)
   if (step === 3 && !showFullReport) {
     return (
       <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
@@ -339,9 +258,9 @@ const SavingsCalculator = () => {
             </div>
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
-            <h3 className="font-manrope font-medium text-base leading-[18px] tracking-[-0.01em] text-[#212121] mb-6">Cost Breakdown</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl border border-gray-200 p-6">
+              <div className="bg-costBreakdownCurrentBg rounded-xl border border-gray-200 p-6">
+                <h3 className="font-manrope font-medium text-base leading-[18px] tracking-[-0.01em] text-[#212121] mb-6">Cost Breakdown</h3>
                 <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
