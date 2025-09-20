@@ -345,8 +345,8 @@ const SavingsCalculator = () => {
                 <h4 className="text-base font-medium text-gray-600 mb-2">
                   {results.type === 'gypcrete' ? 'Current System (OSB + Gypcrete)' : `Current System (${results.competitorName})`}
                 </h4>
-                <div className="text-3xl font-bold text-gray-900 mb-1">${results.currentCost.toLocaleString()}</div>
-                <div className="text-sm text-gray-500">${results.currentCostPerSF.toFixed(2)}/sq ft</div>
+                <div className="font-manrope font-extrabold text-[28px] leading-[18px] tracking-[-0.01em] text-[#212121] mb-1">${results.currentCost.toLocaleString()}</div>
+                <div className="font-manrope font-medium text-sm leading-[20px] tracking-[0.01em] text-costBreakdownGray opacity-60">${results.currentCostPerSF.toFixed(2)}/sq ft</div>
               </div>
               <div className="flex-1 text-right">
                 <h4 className="text-base font-medium text-gray-600 mb-2">
