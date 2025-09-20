@@ -162,7 +162,7 @@ const SavingsCalculator = () => {
             }`}
           >
             <div
-              className="absolute left-0 top-0 bottom-0 w-4 rounded-l-[5px] bg-customBlue"
+              className="absolute left-0 top-0 bottom-0 w-4 rounded-l-[10px] bg-customBlue"
             />
             <h4 className="text-2xl font-semibold text-gray-900 mb-4">Wet Gypsum Underlayment</h4>
             <p className="text-gray-600 text-base mb-3 leading-relaxed">
@@ -176,7 +176,7 @@ const SavingsCalculator = () => {
             }`}
           >
             <div
-              className="absolute left-0 top-0 bottom-0 w-4 rounded-l-[5px] bg-customDarkBlue"
+              className="absolute left-0 top-0 bottom-0 w-4 rounded-l-[10px] bg-customDarkBlue"
             />
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">Entire Subfloor System</h3>
             <p className="text-gray-600 text-base mb-3 leading-relaxed">
