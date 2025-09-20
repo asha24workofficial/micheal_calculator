@@ -162,7 +162,9 @@ const SavingsCalculator = () => {
               }`}
             >
               <div
-                className="absolute left-0 top-0 bottom-0 w-4 rounded-l-2xl bg-customBlue"
+                className={`absolute left-0 top-0 bottom-0 w-4 rounded-l-2xl ${
+                  projectType === 'gypcrete' ? 'bg-selectedOrange' : 'bg-unselectedGray'
+                }`}
               />
               <h4 className="text-lg font-bold text-darkGray mb-4 leading-[39px] tracking-[-0.01em]">Wet Gypsum Underlayment</h4>
               <p className="font-medium text-sm leading-[20px] tracking-normal text-darkGray mb-3">
@@ -176,7 +178,9 @@ const SavingsCalculator = () => {
               }`}
             >
               <div
-                className="absolute left-0 top-0 bottom-0 w-4 rounded-l-2xl bg-customDarkBlue"
+                className={`absolute left-0 top-0 bottom-0 w-4 rounded-l-2xl ${
+                  projectType === 'subfloor' ? 'bg-selectedOrange' : 'bg-unselectedGray'
+                }`}
               />
               <h3 className="text-lg font-bold text-darkGray mb-4 leading-[39px] tracking-[-0.01em]">Entire Subfloor System</h3>
               <p className="font-medium text-sm leading-[20px] tracking-normal text-darkGray mb-3">
