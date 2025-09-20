@@ -320,7 +320,7 @@ const SavingsCalculator = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-8">
          <div className="bg-gradient-to-r from-gradientGreenStart to-gradientGreenEnd rounded-xl p-6 text-white">
   <div className="flex items-center mb-2">
-    <img src="/image.png" alt="Dollar sign icon" className="w-10 h-12 mr-2" />
+    <img src="/image.png" alt="Dollar sign icon" className="w-10 h-14 mr-2" />
     <div className="text-4xl font-bold">{results.savings.toLocaleString()}</div>
   </div>
   <h3 className="text-lg font-bold mb-2">Total Project Savings</h3>
