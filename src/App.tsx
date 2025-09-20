@@ -150,9 +150,10 @@ const SavingsCalculator = () => {
         <div className="max-w-4xl w-full bg-white rounded-3xl shadow-xl p-12">
           <div className="text-center mb-8">
             <img src="/image copy.png" alt="Calculator with dollar sign" className="w-22 h-20 mx-auto mb-4" />
-            <h2 className="font-manrope font-semibold text-[48px] leading-[60px] tracking-[-0.02em] text-gray-900 mb-2">
-              What are you looking to replace?
-            </h2>
+            <h2 className="font-manrope font-semibold text-[36px] leading-[56px] tracking-[-0.03em] text-center text-black mb-2">
+  What are you looking to replace?
+</h2>
+
           </div>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <button
