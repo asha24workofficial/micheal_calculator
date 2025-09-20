@@ -10,6 +10,8 @@ export default {
         customBlue: '#3EA0C6',
         customDarkBlue: '#20576D',
         darkGray: '#444445',
+        selectedOrange: '#FC611D',
+        unselectedGray: '#AFAFAF',
       },
     },
   },
