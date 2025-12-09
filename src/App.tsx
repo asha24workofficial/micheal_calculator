@@ -6,6 +6,15 @@ import {
   CheckCircle,
   Clock,
 } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+
+const USE_HUBSPOT_REDIRECT = true;
+const HUBSPOT_FORM_URL = import.meta.env.VITE_HUBSPOT_FORM_URL || 'https://share.hsforms.com/your-form-id';
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
 const SavingsCalculator = () => {
   const [step, setStep] = useState(1);
@@ -15,7 +24,10 @@ const SavingsCalculator = () => {
   const [competitorType, setCompetitorType] = useState('');
   const [results, setResults] = useState<any>(null);
   const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [showFullReport, setShowFullReport] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleProjectTypeSelect = (type: string) => setProjectType(type);
 
@@ -139,6 +151,32 @@ const SavingsCalculator = () => {
 
   const handleGetFullReport = () => {
     if (email) setShowFullReport(true);
+  };
+
+  const handleHubSpotSubmit = async () => {
+    if (!firstName || !lastName || !email) return;
+
+    setIsSubmitting(true);
+    try {
+      await supabase.from('form_submissions').insert({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        project_type: results.type,
+        savings_amount: results.savings,
+      });
+
+      const params = new URLSearchParams({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      });
+
+      window.location.href = `${HUBSPOT_FORM_URL}?${params.toString()}`;
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+    }
   };
 
   // STEP 1
@@ -368,29 +406,74 @@ const SavingsCalculator = () => {
             </div>
           )}
           <div className="text-center">
-            <h3 className="font-manrope font-bold text-xl leading-[39px] tracking-[-0.01em] text-center text-textDarkBlack mb-4">Get Your Complete Savings Analysis</h3>
-            <p className="font-manrope font-normal text-sm leading-[20px] tracking-normal text-center text-darkGray mb-6">
-              Enter your email to receive a detailed report including risk mitigation benefits, product specifications, and
-              complete competitive analysis.
-            </p>
-            <div className="max-w-md mx-auto mb-6">
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-[7px] focus:border-orange-500 focus:outline-none placeholder-placeholderGray font-manrope font-normal text-sm leading-[20px] tracking-normal text-center"
-                />
-                <button
-                  onClick={handleGetFullReport}
-                  disabled={!email}
-                  className="bg-gradient-to-r from-gradientOrangeStart to-gradientOrangeEnd text-white px-6 py-3 rounded-[7px] font-semibold hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Get Report
-                </button>
-              </div>
-            </div>
+            {USE_HUBSPOT_REDIRECT ? (
+              <>
+                <h3 className="font-manrope font-bold text-xl leading-[39px] tracking-[-0.01em] text-center text-textDarkBlack mb-4">
+                  You've seen the numbers. Now see the product that delivers the savings!
+                </h3>
+                <p className="font-manrope font-normal text-sm leading-[20px] tracking-normal text-center text-darkGray mb-6">
+                  Request a free sample and experience MAXTERRA® for yourself.
+                </p>
+                <div className="max-w-2xl mx-auto mb-6">
+                  <div className="grid md:grid-cols-2 gap-3 mb-4">
+                    <input
+                      type="text"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="Enter your first name"
+                      className="px-4 py-3 border-2 border-gray-200 rounded-[7px] focus:border-orange-500 focus:outline-none placeholder-placeholderGray font-manrope font-normal text-sm leading-[20px] tracking-normal"
+                    />
+                    <input
+                      type="text"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Enter your last name"
+                      className="px-4 py-3 border-2 border-gray-200 rounded-[7px] focus:border-orange-500 focus:outline-none placeholder-placeholderGray font-manrope font-normal text-sm leading-[20px] tracking-normal"
+                    />
+                  </div>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-[7px] focus:border-orange-500 focus:outline-none placeholder-placeholderGray font-manrope font-normal text-sm leading-[20px] tracking-normal mb-4"
+                  />
+                  <button
+                    onClick={handleHubSpotSubmit}
+                    disabled={!firstName || !lastName || !email || isSubmitting}
+                    className="bg-gradient-to-r from-gradientOrangeStart to-gradientOrangeEnd text-white px-12 py-3 rounded-[7px] font-semibold hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h3 className="font-manrope font-bold text-xl leading-[39px] tracking-[-0.01em] text-center text-textDarkBlack mb-4">Get Your Complete Savings Analysis</h3>
+                <p className="font-manrope font-normal text-sm leading-[20px] tracking-normal text-center text-darkGray mb-6">
+                  Enter your email to receive a detailed report including risk mitigation benefits, product specifications, and
+                  complete competitive analysis.
+                </p>
+                <div className="max-w-md mx-auto mb-6">
+                  <div className="flex gap-2">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-[7px] focus:border-orange-500 focus:outline-none placeholder-placeholderGray font-manrope font-normal text-sm leading-[20px] tracking-normal text-center"
+                    />
+                    <button
+                      onClick={handleGetFullReport}
+                      disabled={!email}
+                      className="bg-gradient-to-r from-gradientOrangeStart to-gradientOrangeEnd text-white px-6 py-3 rounded-[7px] font-semibold hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Get Report
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
