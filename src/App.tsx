@@ -154,17 +154,56 @@ const SavingsCalculator = () => {
   };
 
   const handleHubSpotSubmit = async () => {
-    if (!firstName || !lastName || !email) return;
+    if (!firstName || !lastName || !email || !buildingType || !results) return;
 
     setIsSubmitting(true);
     try {
-      await supabase.from('form_submissions').insert({
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        project_type: results.type,
-        savings_amount: results.savings,
+      const payload = {
+        firstName,
+        lastName,
+        email,
+        buildingType,
+        projectType: results.type,
+        projectSize,
+        savingsAmount: results.savings,
+        currentSystemCost: results.currentCost,
+        currentSystemCostPerSF: results.currentCostPerSF,
+        maxterraCost: results.maxterraCost,
+        maxterraCostPerSF: results.maxterraCostPerSF,
+        competitorName: results.competitorName || undefined,
+      };
+
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-report-email`;
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error submitting form:', errorData);
+        setIsSubmitting(false);
+        return;
+      }
+
+      const result = await response.json();
+
+      if (result.success && result.csv) {
+        const blob = new Blob([result.csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = result.fileName || `maxterra-report-${Date.now()}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      }
 
       const params = new URLSearchParams({
         firstName: firstName,
@@ -440,7 +479,7 @@ const SavingsCalculator = () => {
                   />
                   <button
                     onClick={handleHubSpotSubmit}
-                    disabled={!firstName || !lastName || !email || isSubmitting}
+                    disabled={!firstName || !lastName || !email || !buildingType || isSubmitting}
                     className="bg-gradient-to-r from-gradientOrangeStart to-gradientOrangeEnd text-white px-12 py-3 rounded-[7px] font-semibold hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit'}
